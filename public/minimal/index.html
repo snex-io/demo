@@ -15,7 +15,7 @@
       }
     </style>
 
-    <script src="http://cdn.snex.io/snex.latest.min.js"></script>
+    <script src="http://cdn.snex.io/snex.0.1.4.min.js"></script>
   </head>
   <body>
     <div id="url"></div>
@@ -24,9 +24,9 @@
 
     <script type="text/javascript">
         snex.createSession()
-        .then(session => {
+        .then(function(session) {
           var hist = document.getElementById('hist');
-
+          console.log(session);
           session.on('connection', conn => {
               console.log('Player joined!');
 
@@ -39,7 +39,7 @@
 
           return session.createURL('nes');
         })
-        .then(desc => {
+        .then(function(desc) {
             var url = document.getElementById('url');
             url.textContent = desc.url;
         });
