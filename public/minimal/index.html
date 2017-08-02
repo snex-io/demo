@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SNEX - Minimal Example</title>
+
+    <style type="text/css">
+      body {
+        font-family: monospace;
+      }
+
+      #hist {
+        display: flex;
+        flex-flow: column-reverse;
+      }
+    </style>
+
+    <script src="http://cdn.snex.io/snex.latest.min.js"></script>
+  </head>
+  <body>
+    <div id="url"></div>
+
+    <ul id="hist"></ul>
+
+    <script type="text/javascript">
+        snex.createSession()
+        .then(session => {
+          var hist = document.getElementById('hist');
+
+          session.on('connection', conn => {
+              console.log('Player joined!');
+
+              conn.on('data', data => {
+                  const item = document.createElement('li');
+                  item.textContent = JSON.stringify(data);
+                  hist.appendChild(item);
+              });
+          });
+
+          return session.createURL('nes');
+        })
+        .then(desc => {
+            var url = document.getElementById('url');
+            url.textContent = desc.url;
+        });
+    </script>
+  </body>
+</html>
