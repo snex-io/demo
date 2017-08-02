@@ -25,23 +25,32 @@
     <script type="text/javascript">
         snex.createSession()
         .then(function(session) {
-          var hist = document.getElementById('hist');
-          console.log(session);
-          session.on('connection', conn => {
-              console.log('Player joined!');
+            var hist = document.getElementById('hist');
+            console.log('Created session', session);
+            session.on('connection', function(conn) {
+                console.log('Session joined!');
 
-              conn.on('data', data => {
-                  const item = document.createElement('li');
-                  item.textContent = JSON.stringify(data);
-                  hist.appendChild(item);
-              });
-          });
+                conn.on('data', function(data) {
+                    console.log('Data received', data);
+                    var item = document.createElement('li');
+                    item.textContent = JSON.stringify(data);
+                    hist.appendChild(item);
+                });
+            });
 
-          return session.createURL('nes');
+            return session.createURL('nes');
         })
-        .then(function(desc) {
+        .then(function(link) {
+            console.log('Created link', link);
+
             var url = document.getElementById('url');
-            url.textContent = desc.url;
+            var anchor = document.createElement('a');
+            anchor.textContent = link.url;
+            anchor.href = link.url;
+            anchor.target = 'snex-minimal';
+            url.appendChild(anchor);
+            url.appendChild(document.createTextNode(' / '));
+            url.appendChild(document.createTextNode(link.expiresAt));
         });
     </script>
   </body>
