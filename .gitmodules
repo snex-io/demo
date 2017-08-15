@@ -1,0 +1,3 @@
+[submodule "public/tetris"]
+	path = public/tetris
+	url = https://github.com/snex-io/snex-tetris.git
