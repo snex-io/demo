@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SNEX - Minimal Example</title>
+
+    <style type="text/css">
+      body {
+        font-family: monospace;
+      }
+
+      #hist {
+        display: flex;
+        flex-flow: column-reverse;
+      }
+    </style>
+
+    <script src="https://cdn.snex.io/snex.v0.3.3.js"></script>
+  </head>
+  <body>
+    <div id="url"></div>
+
+    <ul id="hist"></ul>
+
+    <script type="text/javascript">
+        snex.createSession()
+        .then(function(session) {
+            var hist = document.getElementById('hist');
+            console.log('Created session', session);
+            session.on('connection', function(conn) {
+                console.log('Session joined!');
+
+                conn.on('data', function(data) {
+                    console.log('Data received', data);
+                    var item = document.createElement('li');
+                    item.textContent = JSON.stringify(data);
+                    hist.appendChild(item);
+                });
+            });
+
+            return session.createURL('nes');
+        })
+        .then(function(link) {
+            console.log('Created link', link);
+
+            var url = document.getElementById('url');
+            var anchor = document.createElement('a');
+            anchor.textContent = link.url;
+            anchor.href = link.url;
+            anchor.target = 'snex-minimal';
+            url.appendChild(anchor);
+            url.appendChild(document.createTextNode(' / '));
+            url.appendChild(document.createTextNode(link.expiresAt));
+        });
+    </script>
+  </body>
+</html>
