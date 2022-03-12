@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.5
