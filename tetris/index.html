@@ -1,0 +1,86 @@
+<html>
+<head>
+    <title>Tetris</title>
+    <link href="https://fonts.googleapis.com/css?family=Jura" rel="stylesheet">
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            display: flex;
+            font-family: 'Jura', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+            flex-flow: column;
+            font-size: 14px;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        #url {
+            background: #de4d5f;
+            border-radius: 1em;
+            font-weight: bold;
+            font-size: 20px;
+            margin: 1em auto;
+            padding: .3em;
+            width: 20em;
+        }
+
+        .score {
+            font-size: 32px;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .players {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+        }
+
+        .player {
+            margin: 1em;
+        }
+
+        canvas {
+            border: solid .2em #fff;
+        }
+    </style>
+</head>
+<body>
+    <template id="player-template">
+        <div class="player">
+            <div class="score"></div>
+            <canvas class="tetris" width="240" height="400"></canvas>
+        </div>
+    </template>
+
+    <div>
+        <h1>
+            Tetris powered by <a href="https://snex.io" target="snex-website">
+                <img src="https://snex-cdn.pomle.com/images/snex-logo.svg" alt="SNEX" class="logo" width="120" height="30" />
+            </a>
+        </h1>
+
+        <h2>
+            Join or start game by visiting below URL on your smart phone
+        </h2>
+
+        <div id="url">Please wait, creating URL...</div>
+    </div>
+
+    <div class="players"></div>
+
+    <div>
+        [<a href="https://github.com/snex-io/snex-tetris">Source Code</a>]
+    </div>
+
+    <script src="https://snex-cdn.pomle.com/snex.0.5.2.min.js"></script>
+    <script src="arena.js"></script>
+    <script src="player.js"></script>
+    <script src="tetris.js"></script>
+    <script src="tetris-manager.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
