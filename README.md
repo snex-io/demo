@@ -1,3 +1,3 @@
 # SNEX Demos
 
-Repo containing demos for [SNEX](http://snex.io).
+Repo containing demos for [SNEX](http://snex.pomle.com).
